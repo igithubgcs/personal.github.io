@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无标题文档</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 744px;
+            height: 160px;
+            overflow: hidden;
+            margin: 100px auto;
+        }
+        #left{
+            float: left;
+            position: relative;
+        }
+        #right{
+            float: right;
+            position: relative;
+        }
+        #ul1{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #ul1 li{
+            width: 612px;
+            height: 160px;
+        }
+        #ol1 li{
+            height: 42px;
+            border: 4px solid #d3d3d3;
+            margin-bottom: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        #ol1 li i{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0, .3);
+            width: 115px;
+            height: 42px;
+        }
+        #ol1 li.active i{
+            background: rgba(0,0,0,0);
+        }
+        #box .kuang{
+            width: 127px;
+            height: 50px;
+            background: url(../img/images/7.png);
+            position: absolute;
+            left: -6px;
+            top: 0;
+            z-index: 99;
+            cursor: pointer;
+        }
+    </style>
+    <link href="../favicon.ico"  rel="icon" type="image/x-icon" />
+
+    <script>
+        function getStyle(obj, name){
+            return (obj.currentStyle || getComputedStyle(obj, false))[name];
+        }
+        function move(obj, json, option){
+            var option=option || {};
+            option.duration=option.duration || 600;
+            option.easing=option.easing || 'ease-out';
+
+            var start={};
+            var dis={};
+            var count=Math.floor(option.duration/30);
+            for(var name in json){
+                start[name]=parseFloat(getStyle(obj, name));
+                dis[name]=json[name]-start[name];
+            }
+            var n=0;
+            clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+                n++;
+
+                for(var name in json){
+                    switch(option.easing){
+                        case 'linear':
+                            var a=n/count;
+                            var cur=start[name]+dis[name]*a;
+                            break;
+                        case 'ease-out':
+                            var a=1-n/count;
+                            var cur=start[name]+dis[name]*(1-a*a*a);
+                            break;
+                        case 'ease-in':
+                            var a=n/count;
+                            var cur=start[name]+dis[name]*a*a*a;
+                            break;
+                    }
+                    if(name=='opacity'){
+                        obj.style.opacity=cur;
+                        obj.style.filter='alpha(opacity:'+cur*100+')';
+                    }else{
+                        obj.style[name]=cur+'px';
+                    }
+                }
+                if(n==count){
+                    clearInterval(obj.timer);
+                    option.complete && option.complete();
+                }
+            },30);
+        }
+        window.onload = function () {
+            var oBox=document.getElementById('box');
+            var oUl=document.getElementById('ul1');
+            var oOl=document.getElementById('ol1');
+            var aLi=oUl.children;
+            var aBtn=oOl.children;
+            var oK=oBox.getElementsByTagName('span')[0];
+
+            var H=aLi[0].offsetHeight;
+            var iSh=aBtn[0].offsetHeight;
+
+            for(var i=0; i<aBtn.length; i++){
+                aBtn[i].index=i;
+                aBtn[i].onmouseover=function(){
+                    move(oUl, {top: -this.index*H},{duration: 400});
+                    move(oK, {top: (iSh+5)*this.index},{duration: 400});
+
+                    for(var i=0; i<aBtn.length; i++){
+                        aBtn[i].className='';
+                    }
+                    this.className='active';
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<div id="box">
+    <div id="left">
+        <ul id="ul1">
+            <li><img src="../img/images/0.jpg"></li>
+            <li><img src="../img/images/1.jpg"></li>
+            <li><img src="../img/images/2.jpg"></li>
+        </ul>
+    </div>
+    <div id="right">
+        <span class="kuang"></span>
+        <ol id="ol1">
+            <li class="active">
+                <i></i>
+                <img src="../img/images/4.jpg">
+            </li>
+            <li>
+                <i></i>
+                <img src="../img/images/5.jpg">
+            </li>
+            <li>
+                <i></i>
+                <img src="../img/images/6.jpg">
+            </li>
+        </ol>
+    </div>
+</div>
+</body>
+</html>

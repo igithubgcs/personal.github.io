@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0; padding:0;}
+li{list-style:none;}
+.box{width: 100%; height:500px;background: #1bbc9b;}
+.box .box1{width:1000px; margin:0 auto; color: #fff;}
+.box .box1a{font-size:120px; text-align:center; padding:50px;}
+.box .box1b{font-size:40px; text-align:center;}
+.left{float:left;}
+.right{float:right;}
+.clearfix:after{display:block; content:''; clear:both;}
+.clearfix{zoom:1;}
+
+.obody{position:relative;}
+.box0{position:absolute;left:0; top:40px; width:100%; z-index:-12;}
+
+#nav1{width:100%; height:50px; display:none;}
+
+
+.box2{width:100%; height:40px; background:#000; position:relative;}
+.box2a{color:#fff;width:1000px; height:100%; margin:0 auto;/* border:1px solid #f00;*/position:relative;}
+.box2 .box2a .box2b .box2a1{height:100%; width:80px; line-height:40px;/* margin-left:10px;*/ text-align:center;}
+.box2 .box2a .box2b .box2a2{width:80px; height:40px; background:blue; position:absolute; top:0; left:0; z-index:-1;}
+.box2 .box2a .box2b{position:absolute; right:0; top:0;}
+.active{background:#039;}
+
+
+
+.box3{width:100%;height:500px; background:#1889c5;}
+.box3 .box3a{width:1000px; margin:0 auto; position:relative;}
+.box3 .box3a .box3a1{position:absolute; left:0; top:220px;}
+.box3 .box3a .box3a1 .box3a1a p{font-size:20px; color:#fff; padding:10px;}
+.box3 .box3a .box3a1 .box3a1b p{font-size:20px; color:#fff; padding:10px;}
+.box3 .box3a h1{color:#fff; text-align:center;}
+
+
+.box4{width:100%; height:500px; background:#364b5f;}
+.box4 .box4a{width:1000px; margin:0 auto;}
+.box4 .box4a .box4a1{text-align:center; color:#fff;}
+.box4 .box4a .box4a2 .box4a2a a{display:block; color:#fff; width:150px; height:150px; text-decoration:none; background:#666;font-size:30px; line-height:150px; text-align:center; position:relative; overflow:hidden;}
+.box4 .box4a .box4a2 .box4a2a a span{width:100%; height:100%; background:#009; display:block; position:absolute; top:0; left:-150px; opacity:0.5; filter:alpha(opacity:50);}
+.box4 .box4a .box4a2 .box4a2a{margin:10px;}
+
+
+
+.box5{width:100%; height:500px; background: #e74d3d;}
+.box5a{width:1000px; margin:0 auto;}
+.box5a .box5a1{text-align:center; line-height:400px; color:#fff;}
+.box5a .box5a2{text-align:center;}
+.box5a .box5a2 span{color:#fff; font-size:50px;}

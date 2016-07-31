@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="../favicon.ico"  rel="icon" type="image/x-icon" />
+<style>
+	div{width:560px;height:150px;border:1px solid #000; overflow:hidden;position:absolute;}
+	ul{position:absolute; width:200px; overflow:hidden;}
+	ul li{float:left;height:100px;list-style:none;}
+	ul li img{height:100%;margin-left:10px;}
+
+</style>
+<script>
+	window.onload=function(){
+		var oUl=document.getElementById('ul');
+		var aLi=oUl.children;
+		var oL=document.getElementById('left');
+		var oR=document.getElementById('right');
+		oUl.innerHTML+=oUl.innerHTML;
+		oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+		
+		var n=0;
+		var timer;
+		
+		clearInterval(timer);
+		timer=setInterval(function(){
+			n++;
+			if(n>0){
+				n=-oUl.offsetWidth/2	
+			}
+			oUl.style.left=n+'px'	
+			
+		
+		},30)
+		
+		
+		oL.onclick=function(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				n--;
+				if(n<-oUl.offsetWidth/2){
+					n=0;	
+				}	
+				
+				oUl.style.left=n+'px';
+				
+				
+			},30)
+		}
+		
+		
+		oR.onclick=function(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				n++;
+				if(n>0){
+					n=-oUl.offsetWidth/2;	
+					
+				}	
+				oUl.style.left=n+'px';
+			
+			},30)	
+			
+		}
+		
+	}
+
+</script>
+</head>
+
+<body>
+	<input type="button" value="zuo" id="left">
+    <input type="button" value="you" id="right">
+	<div>
+    	<ul id="ul">
+        	<li><img src="../img/cat/1.jpg"></li>
+            <li><img src="../img/cat/2.jpg"></li>
+            <li><img src="../img/cat/3.jpg"></li>
+            <li><img src="../img/cat/4.jpg"></li>
+            <li><img src="../img/cat/5.jpg"></li>
+        </ul>
+    
+    </div>
+</body>
+</html>
